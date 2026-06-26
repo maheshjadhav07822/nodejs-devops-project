@@ -70,8 +70,7 @@ pipeline {
             steps {
                 script {
                     withKubeConfig(
-                    credentialsId: 'k8s',
-                    serverUrl: '') {
+                    credentialsId: 'k8s') {
                         sh 'kubectl apply -f kubernetes/namespace.yaml'
                         sh 'kubectl apply -f kubernetes/configmap.yaml'
                         sh 'kubectl apply -f kubernetes/secret.yaml'
