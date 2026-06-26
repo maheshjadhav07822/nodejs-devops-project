@@ -69,21 +69,17 @@ pipeline {
        stage('Debug Agent') {
     steps {
         sh '''
-        echo "Hostname:"
         hostname
-
-        echo "User:"
         whoami
+        pwd
 
-        echo "PATH:"
-        echo $PATH
+        echo "PATH=$PATH"
 
-        echo "kubectl:"
-        which kubectl || true
-
+        command -v kubectl || true
         ls -l /usr/local/bin/kubectl || true
 
-        kubectl version --client || true
+        cat /etc/os-release || true
+        mount | head -20 || true
         '''
     }
 }
