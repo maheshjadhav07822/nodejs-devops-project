@@ -71,13 +71,13 @@ pipeline {
                 script {
                     withKubeConfig(
                     credentialsId: 'k8s') {
-                        sh 'kubectl apply -f kubernetes/namespace.yaml'
-                        sh 'kubectl apply -f kubernetes/configmap.yaml'
-                        sh 'kubectl apply -f kubernetes/secret.yaml'
-                        sh 'kubectl apply -f kubernetes/deployment.yaml'
-                        sh 'kubectl apply -f kubernetes/service.yaml'
-                        sh 'kubectl apply -f kubernetes/ingress.yaml'
-                        sh 'kubectl apply -f kubernetes/hpa.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/namespace.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/configmap.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/secret.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/deployment.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/service.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/ingress.yaml'
+                        sh '/usr/local/bin/kubectl apply -f kubernetes/hpa.yaml'
                     }
                 }
             }
