@@ -50,20 +50,16 @@ pipeline {
             }
         }
         stage('Docker Build and Push') {
-            steps {
-                script {
-                    withDockerRegistry(
-                    credentialsId: 'docker',
-                    toolName: 'docker') {
-                        sh "docker build -t ${APP_NAME}:${IMAGE_TAG} ."
-                        sh "docker tag ${APP_NAME}:${IMAGE_TAG} \
-                        ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG}"
-                        sh "docker push \
-                        ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG}"
-                    }
-                }
+    steps {
+        script {
+            withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+                sh "docker build -t ${APP_NAME}:${IMAGE_TAG} ."
+                sh "docker tag ${APP_NAME}:${IMAGE_TAG} ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG}"
+                sh "docker push ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG}"
             }
         }
+    }
+}
         stage('Trivy Image Scan') {
             steps {
                 sh "trivy image \
