@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 // Home route
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to NodeJS DevOps Project!',
+    message: 'Welcome to NodeJS DevOps Project! ',
     version: '1.0.0',
     status: 'Running'
   });
