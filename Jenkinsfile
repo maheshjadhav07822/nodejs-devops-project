@@ -66,6 +66,27 @@ pipeline {
                 ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG} > trivy.txt"
             }
         }
+       stage('Debug Agent') {
+    steps {
+        sh '''
+        echo "Hostname:"
+        hostname
+
+        echo "User:"
+        whoami
+
+        echo "PATH:"
+        echo $PATH
+
+        echo "kubectl:"
+        which kubectl || true
+
+        ls -l /usr/local/bin/kubectl || true
+
+        kubectl version --client || true
+        '''
+    }
+}
         stage('Deploy to Kubernetes') {
             steps {
                 script {
